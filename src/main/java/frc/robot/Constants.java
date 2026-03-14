@@ -77,9 +77,9 @@ public final class Constants {
   public class Shooter {
     public static final int shooterMotor = 7;
     public static final int indexMotor = 6;
-    public static final double indexIntake = 1.2;
-    public static final double shooterSpeed = 0.67;
-    public static final double indexShoot = 1;
+    public static final double indexIntake = -1;
+    public static final double shooterSpeed = 0.5;
+    public static final double indexShoot = 1.2;
     public static final double shooterSpeedLow = 0.3;
     public static final double reverseShooter = -0.1;
   }

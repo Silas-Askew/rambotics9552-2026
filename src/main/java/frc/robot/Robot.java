@@ -76,9 +76,11 @@ public class Robot extends TimedRobot {
       manipulatorJoystick.a().whileTrue(new ArmDown(m_armSubsystem));
       manipulatorJoystick.b().whileTrue(new ArmUp(m_armSubsystem));
       manipulatorJoystick.leftBumper().whileTrue(new Outtake(m_ShooterSubsystem, m_IntakeSubsystem));
-      manipulatorJoystick.rightBumper().whileTrue(new Intake(m_ShooterSubsystem, m_IntakeSubsystem));
+      manipulatorJoystick.rightBumper().and(() -> !manipulatorJoystick.rightTrigger().getAsBoolean()).whileTrue(new Intake(m_ShooterSubsystem, m_IntakeSubsystem));
       manipulatorJoystick.leftTrigger().whileTrue(new ReverseShooter(m_ShooterSubsystem));
-      manipulatorJoystick.rightTrigger().whileTrue(new ShootShooter(m_ShooterSubsystem));
+      manipulatorJoystick.rightTrigger().and(() -> !manipulatorJoystick.rightBumper().getAsBoolean()).whileTrue(new ShootShooter(m_ShooterSubsystem));
+      manipulatorJoystick.rightTrigger().and(() -> manipulatorJoystick.rightBumper().getAsBoolean()).whileTrue(new ShootNIntake(m_ShooterSubsystem, m_IntakeSubsystem));
+      //manipulatorJoystick.rightBumper().whileTrue(new Intake(m_ShooterSubsystem, m_IntakeSubsystem)).and(() -> manipulatorJoystick.rightTrigger().getAsBoolean()).whileTrue(new ShootNIntake(m_ShooterSubsystem, m_IntakeSubsystem));
     }
 
     else if (controlChooser.getSelected()==1){

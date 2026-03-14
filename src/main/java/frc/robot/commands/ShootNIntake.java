@@ -18,12 +18,14 @@ public class ShootNIntake extends Command{
     @Override
     public void execute(){
         intake.intake();
-        shooter.intakeIndex();
+        shooter.outtakeIndex();
+        shooter.shooterShoot();
     }
 
     @Override
     public void end(boolean wasInterupted){
        intake.stopIntake();
        shooter.stopIndex();
+       shooter.stopShooter();
     }
 }
