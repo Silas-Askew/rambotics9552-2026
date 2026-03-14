@@ -47,12 +47,12 @@ public final class Constants {
   }
 
   public static final class Arm{
-    public static final int MOTOR_1 = -1;
-    public static final int MOTOR_2 = -1;
+    public static final int MOTOR_1 = 10;
+    public static final int MOTOR_2 = 11;
     public static final double MotorUp = 1;
-    public static final double MotorDown = -1;
+    public static final double MotorDown = 87643;
   }
-
+/* 
   public static final class Wrist {
     public static final int CYL1_FORWARD = 0;
     public static final int CYL1_REVERSE = 1;
@@ -62,7 +62,7 @@ public final class Constants {
     public static final double IntakeSpeed = -2;
     public static final double OuttakeSpeed = 2;
   }
-
+*/
   public static final class Climber {
     public static final int MotorUp = 1;
     public static final int MotorDown = -1;

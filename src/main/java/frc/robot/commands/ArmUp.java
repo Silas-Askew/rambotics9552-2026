@@ -11,7 +11,7 @@ public class ArmUp extends Command {
 
         addRequirements(armSubsystem);
     }
-
+/* 
     @Override
     public void execute(){
         arm.armUp();
@@ -21,5 +21,5 @@ public class ArmUp extends Command {
     public void end(boolean wasInterupted){
         arm.stopArm();
     }
-
+*/
 }

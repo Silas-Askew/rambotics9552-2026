@@ -68,8 +68,8 @@ public class Robot extends TimedRobot {
       m_driveSubsystem.setDefaultCommand(
         new ArcadeDrive(
               m_driveSubsystem,
-              () -> ((-movementJoystick.getLeftTriggerAxis() + movementJoystick.getRightTriggerAxis())),
-              () -> (movementJoystick.getLeftX())
+              () -> (0*(-movementJoystick.getLeftTriggerAxis() + movementJoystick.getRightTriggerAxis())+1*movementJoystick.getLeftY()),
+              () -> (movementJoystick.getRightX())
         ));
         
 

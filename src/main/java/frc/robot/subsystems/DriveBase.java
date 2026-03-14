@@ -26,7 +26,6 @@ public class DriveBase extends SubsystemBase {
   private final SparkMax m_rightMotor = new SparkMax(Constants.drive.RIGHT_MOTOR, MotorType.kBrushless);
   private final SparkMax m_leftBackMotor = new SparkMax(Constants.drive.REAR_LEFT_MOTOR, MotorType.kBrushless);
   private final SparkMax m_rightBackMotor = new SparkMax(Constants.drive.REAR_RIGHT_MOTOR, MotorType.kBrushless);
-  
 
 
   RelativeEncoder leftEncoder = m_leftMotor.getEncoder();
@@ -37,18 +36,33 @@ public class DriveBase extends SubsystemBase {
 
 
 
+  @SuppressWarnings("deprecation")
   public DriveBase() {
 
-
     // inverts two motors so the drivetrain can run
-    m_leftMotor.setInverted(true);
-    m_leftBackMotor.setInverted(true);
+    //m_leftMotor.setInverted(true);
+    //m_leftBackMotor.setInverted(true);
+
+    //declare motor configurings
+    SparkMaxConfig m_leftMotorConfig = new SparkMaxConfig();
+    SparkMaxConfig m_rightMotorConfig = new SparkMaxConfig();
+    SparkMaxConfig m_leftBackMotorConfig = new SparkMaxConfig();
+    SparkMaxConfig m_rightBackMotorConfig = new SparkMaxConfig();
+
+    //set motor configurations
+    m_leftMotorConfig.inverted(true);
+    m_rightMotorConfig.inverted(false);
+    m_leftBackMotorConfig.inverted(true).follow(m_leftMotor);
+    m_rightBackMotorConfig.follow(m_rightMotor);
+
     //SparkMaxConfig m_leftBackMotorConfig = new SparkMaxConfig(); 
     //SparkMaxConfig m_rightBackMotorConfig = new SparkMaxConfig(); 
     //m_leftBackMotorConfig.follow(m_leftMotor);
     //m_rightBackMotorConfig.follow(m_rightMotor);
-    //m_leftBackMotor.configure(m_leftBackMotorConfig, SparkBase.ResetMode.kResetSafeParameters, SparkBase.PersistMode.kPersistParameters);
-    //m_rightBackMotor.configure(m_rightBackMotorConfig, SparkBase.ResetMode.kResetSafeParameters, SparkBase.PersistMode.kPersistParameters);
+    m_leftMotor.configure(m_leftMotorConfig, SparkBase.ResetMode.kResetSafeParameters, SparkBase.PersistMode.kPersistParameters);
+    m_rightMotor.configure(m_rightMotorConfig, SparkBase.ResetMode.kResetSafeParameters, SparkBase.PersistMode.kPersistParameters);
+    m_leftBackMotor.configure(m_leftBackMotorConfig, SparkBase.ResetMode.kResetSafeParameters, SparkBase.PersistMode.kPersistParameters);
+    m_rightBackMotor.configure(m_rightBackMotorConfig, SparkBase.ResetMode.kResetSafeParameters, SparkBase.PersistMode.kPersistParameters);
     leftEncoder.setPosition(Constants.drive.conversionFactor);
     rightEncoder.setPosition(Constants.drive.conversionFactor);
 
@@ -58,7 +72,7 @@ public class DriveBase extends SubsystemBase {
   }
 
   public void drive(final double ySpeed, final double rotateValue) {
-    m_RobotDrive.arcadeDrive(ySpeed, -rotateValue);
+    m_RobotDrive.arcadeDrive(-ySpeed, -rotateValue);
   }
 
   public double getEncoder(){

@@ -18,7 +18,8 @@ public class Arm extends SubsystemBase {
 
     private final RelativeEncoder Motor1Encoder = Motor1.getEncoder();
     private final RelativeEncoder Motor2Encoder = Motor2.getEncoder();
-
+}
+/* 
     public Arm() {
         Motor1.setInverted(true);
         SparkMaxConfig motor2config = new SparkMaxConfig(); 
@@ -27,7 +28,7 @@ public class Arm extends SubsystemBase {
 
 
     }
-    
+*/
     //final DigitalInput limitSwitch = new DigitalInput(Constants.Climber.toplimitSwitch);
  
     // public void setMotorSpeed(double speed) {
@@ -49,7 +50,7 @@ public class Arm extends SubsystemBase {
     //         }
     //     }
     // }
-
+/* 
     public void armUp() {
         Motor1.setInverted(true);
         Motor1.set(Constants.Arm.MotorUp);
@@ -64,3 +65,4 @@ public class Arm extends SubsystemBase {
         Motor1.set(0);
     }
 }
+    */
