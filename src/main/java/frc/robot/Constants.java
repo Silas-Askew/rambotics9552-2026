@@ -25,7 +25,8 @@ public final class Constants {
       public static final int REAR_LEFT_MOTOR = 4;
       public static final int RIGHT_MOTOR = 1;
       public static final int REAR_RIGHT_MOTOR = 2;
-      public static final double DRIVE_SPEED_MULTIPLYER = .6;
+      public static final double DRIVE_SPEED_MULTIPLYER = 1*.6+0;
+      public static final double TURN_SPEED_MULTIPLIER = 1*.7+0;
       public static final double wheelRadius=0.0508;
       public static final double gearRatio=6.145;
       public static final double conversionFactor = wheelRadius*Math.PI*2/(gearRatio);
@@ -78,7 +79,7 @@ public final class Constants {
     public static final int shooterMotor = 7;
     public static final int indexMotor = 6;
     public static final double indexIntake = -1;
-    public static final double shooterSpeed = 0.5;
+    public static final double shooterSpeed = 0.8;
     public static final double indexShoot = 1.2;
     public static final double shooterSpeedLow = 0.3;
     public static final double reverseShooter = -0.1;

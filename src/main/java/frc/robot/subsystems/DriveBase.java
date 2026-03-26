@@ -72,7 +72,7 @@ public class DriveBase extends SubsystemBase {
   }
 
   public void drive(final double ySpeed, final double rotateValue) {
-    m_RobotDrive.arcadeDrive(-ySpeed, -rotateValue);
+    m_RobotDrive.arcadeDrive(ySpeed, -rotateValue);
   }
 
   public double getEncoder(){
