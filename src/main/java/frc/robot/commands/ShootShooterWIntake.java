@@ -32,7 +32,7 @@ public class ShootShooterWIntake extends Command {
     @Override
     public void end(boolean wasInterupted){
         shooter.stopShooter();
-        shooter.stopIndex();
+        intake.stopIndex();
         //if (this.shouldIntake.getAsBoolean()) {
             intake.stopIntake();
         //}

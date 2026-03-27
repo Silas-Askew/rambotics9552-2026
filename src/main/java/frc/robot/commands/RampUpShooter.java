@@ -1,14 +1,15 @@
 package frc.robot.commands;
 
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants;
 import frc.robot.subsystems.ShooterSubsystem;
 
-public class PassShooter extends Command{
-    
+public class RampUpShooter extends Command {
     private ShooterSubsystem shooter;
+    private SlewRateLimiter rampLimiter = new SlewRateLimiter(1.0 / Constants.Shooter.shooterRampTime);
 
-
-    public PassShooter(ShooterSubsystem shooterSubsystem) {
+    public RampUpShooter(ShooterSubsystem shooterSubsystem) {
         this.shooter = shooterSubsystem;
 
         addRequirements(shooterSubsystem);
@@ -16,7 +17,7 @@ public class PassShooter extends Command{
 
     @Override
     public void execute(){
-        shooter.shooterPass();
+        shooter.setShooterSpeed(rampLimiter.calculate(Constants.Shooter.shooterSpeed));
     }
 
     @Override
@@ -24,5 +25,5 @@ public class PassShooter extends Command{
        shooter.stopShooter();
        //shooter.stopIndex();
     }
-}
 
+}

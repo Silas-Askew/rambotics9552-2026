@@ -5,25 +5,25 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 public class Outtake extends Command {
-    public ShooterSubsystem shooter;
+    //public ShooterSubsystem shooter;
     public IntakeSubsystem intake;
 
-    public Outtake(ShooterSubsystem shooterSubsystem, IntakeSubsystem intakeSubsystem) {
-        this.shooter = shooterSubsystem;
+    public Outtake(IntakeSubsystem intakeSubsystem) {
+        //this.shooter = shooterSubsystem;
         this.intake = intakeSubsystem;
 
-        addRequirements(shooterSubsystem, intakeSubsystem);
+        addRequirements(intakeSubsystem);
     }
 
     @Override
     public void execute(){
         intake.outtake();
-        shooter.outtakeIndex();
+        //shooter.outtakeIndex();
     }
 
     @Override
     public void end(boolean wasInterupted){
        intake.stopIntake();
-       shooter.stopIndex();
+       intake.stopIndex();
     }
 }

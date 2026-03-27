@@ -5,8 +5,8 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 public class ShootNIntake extends Command{
-    public ShooterSubsystem shooter;
-    public IntakeSubsystem intake;
+    private ShooterSubsystem shooter;
+    private IntakeSubsystem intake;
 
     public ShootNIntake(ShooterSubsystem shooterSubsystem, IntakeSubsystem intakeSubsystem) {
         this.shooter = shooterSubsystem;
@@ -17,15 +17,14 @@ public class ShootNIntake extends Command{
 
     @Override
     public void execute(){
-        intake.intake();
-        shooter.outtakeIndex();
+        intake.intakeToShooter();
         shooter.shooterShoot();
     }
 
     @Override
     public void end(boolean wasInterupted){
        intake.stopIntake();
-       shooter.stopIndex();
+       intake.stopIndex();
        shooter.stopShooter();
     }
 }
