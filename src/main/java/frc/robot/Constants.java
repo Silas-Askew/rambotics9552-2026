@@ -75,13 +75,13 @@ public final class Constants {
     public static final double intakeSpeed = 1;
     public static final double indexIntake = -1;
     public static final double outtakeSpeed = -1;
-    public static final double indexShoot = 1.2;
+    public static final double indexShoot = 1.0;
     public static final double indexOuttake = 1;
   }
 
   public class Shooter {
     public static final int shooterMotor = 7;
-    public static final double shooterSpeed = 1;
+    public static final double shooterSpeed = 0.8;
     public static final double shooterSpeedLow = 0.3;
     public static final double reverseShooter = -0.1;
     public static final double shooterRampTime = 1;

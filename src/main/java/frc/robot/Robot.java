@@ -80,6 +80,7 @@ public class Robot extends TimedRobot {
       manipulatorJoystick.leftTrigger().and(() -> !manipulatorJoystick.rightTrigger().getAsBoolean()).whileTrue(new RampUpShooter(m_ShooterSubsystem));
       manipulatorJoystick.rightTrigger().and(() -> !manipulatorJoystick.leftTrigger().getAsBoolean()).whileTrue(new IndexShooter(m_IntakeSubsystem));
       manipulatorJoystick.rightTrigger().and(() -> manipulatorJoystick.leftTrigger().getAsBoolean()).whileTrue(new ShootShooter(m_ShooterSubsystem, m_IntakeSubsystem));
+      manipulatorJoystick.rightTrigger().and(() -> manipulatorJoystick.leftTrigger().getAsBoolean()).and(() -> manipulatorJoystick.rightBumper().getAsBoolean()).whileTrue(new ShootNIntake(m_ShooterSubsystem, m_IntakeSubsystem));
       //manipulatorJoystick.leftTrigger().whileTrue(new ReverseShooter(m_ShooterSubsystem));
       //manipulatorJoystick.rightTrigger().and(() -> !manipulatorJoystick.rightBumper().getAsBoolean()).whileTrue(new ShootShooter(m_ShooterSubsystem));
       //manipulatorJoystick.rightTrigger().and(() -> manipulatorJoystick.rightBumper().getAsBoolean()).whileTrue(new ShootNIntake(m_ShooterSubsystem, m_IntakeSubsystem));
@@ -118,7 +119,8 @@ public class Robot extends TimedRobot {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     //return new DriveForward(m_driveSubsystem);
-    return new DriveForwardTimed(m_driveSubsystem, () -> 0.67, 2.5);
+    //return new DriveForwardTimed(m_driveSubsystem, () -> 0.67, 2.5);
+    return new MiddleAuto(m_driveSubsystem, m_ShooterSubsystem, m_IntakeSubsystem);
   }
   /**
    * This function is run when the robot is first started up and should be used for any
