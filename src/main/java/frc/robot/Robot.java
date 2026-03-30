@@ -9,6 +9,9 @@ package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.AddressableLED;
+import edu.wpi.first.wpilibj.AddressableLEDBuffer;
+import edu.wpi.first.wpilibj.AddressableLEDBufferView;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -38,6 +41,8 @@ public class Robot extends TimedRobot {
   private final ShooterSubsystem m_ShooterSubsystem = new ShooterSubsystem();
 
   private final IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
+
+  private final LEDSubsystem m_LedSubsystem = new LEDSubsystem();
   
   SendableChooser<Integer> controlChooser = new SendableChooser<Integer>();
   //private NetworkTableEntry cameraSelection;
@@ -52,7 +57,7 @@ public class Robot extends TimedRobot {
     // Configure the button bindings
   public Robot(){
     UsbCamera camera = CameraServer.startAutomaticCapture();
-
+    
     controlChooser.setDefaultOption("arcade :)", 0);
     controlChooser.addOption("tank :(", 1);
 
@@ -130,15 +135,17 @@ public class Robot extends TimedRobot {
     // An ExampleCommand will run in autonomous
     //return new DriveForward(m_driveSubsystem);
     //return new DriveForwardTimed(m_driveSubsystem, () -> 0.67, 2.5);
+
     if (autoChooser.getSelected() == 1) {
-      return new LeftSideAuto(m_driveSubsystem, m_ShooterSubsystem, m_IntakeSubsystem);
+      m_autonomousCommand = new LeftSideAuto(m_driveSubsystem, m_ShooterSubsystem, m_IntakeSubsystem);
     } else if (autoChooser.getSelected() == 2) {
-      return new MiddleAuto(m_driveSubsystem, m_ShooterSubsystem, m_IntakeSubsystem);
+      m_autonomousCommand = new MiddleAuto(m_driveSubsystem, m_ShooterSubsystem, m_IntakeSubsystem);
     } else if (autoChooser.getSelected() == 3) {
-      return new RightSideAuto(m_driveSubsystem, m_ShooterSubsystem, m_IntakeSubsystem);
+      m_autonomousCommand = new RightSideAuto(m_driveSubsystem, m_ShooterSubsystem, m_IntakeSubsystem);
     } else {
-      return new ShootFuelAuto(m_driveSubsystem, m_ShooterSubsystem, m_IntakeSubsystem);
+      m_autonomousCommand = new ShootFuelAuto(m_driveSubsystem, m_ShooterSubsystem, m_IntakeSubsystem);
     }
+    return m_autonomousCommand;
     //return new MiddleAuto(m_driveSubsystem, m_ShooterSubsystem, m_IntakeSubsystem);
   }
   /**

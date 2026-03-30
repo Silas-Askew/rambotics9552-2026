@@ -87,6 +87,10 @@ public final class Constants {
     public static final double shooterRampTime = 1;
   }
 
+  public class LED {
+    public static final int kLedPort = 0;
+    public static final int kLedBufferLength = 512;
+  }
 
 }
 
