@@ -45,6 +45,7 @@ public final class Constants {
     public static final double ki = 0.05;
     public static final double kp = 0.4;
     public static final double tolerence=0.1;
+    public static final double AUTONOMOUS_MAIN_TURN_SPEED = 0.8;
   }
 
   public static final class Arm{

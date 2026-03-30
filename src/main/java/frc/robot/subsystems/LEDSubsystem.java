@@ -16,7 +16,7 @@ import frc.robot.Constants;
 // contents copied / adapted almost entirely from 
 // https://docs.wpilib.org/en/stable/docs/software/hardware-apis/misc/addressable-leds.html
 public class LEDSubsystem extends SubsystemBase {
-    private final AddressableLED m_ledPad;
+    private final AddressableLED m_ledStrand;
     private final AddressableLEDBuffer m_ledBuffer;
     private final AddressableLEDBufferView m_leftView;
     private final AddressableLEDBufferView m_rightView;
@@ -32,14 +32,22 @@ public class LEDSubsystem extends SubsystemBase {
     private final LEDPattern m_scrollingRainbow =
         m_rainbow.scrollAtAbsoluteSpeed(MetersPerSecond.of(0.33), kLedSpacing);
 
+          public void robotPeriodic() {
+    // Update the buffer with the rainbow animation
+
+    m_scrollingRainbow.applyTo(m_ledBuffer);
+    // Set the LEDs
+    m_ledStrand.setData(m_ledBuffer);
+  }
+
 
     public LEDSubsystem() {
-        m_ledPad = new AddressableLED(Constants.LED.kLedPort);
+        m_ledStrand = new AddressableLED(Constants.LED.kLedPort);
         m_ledBuffer = new AddressableLEDBuffer(Constants.LED.kLedBufferLength);
         m_leftView = m_ledBuffer.createView(0, 255);
         m_rightView = m_ledBuffer.createView(256, 511).reversed();
-        m_ledPad.setLength(m_ledBuffer.getLength());
-        m_ledPad.start();
+        m_ledStrand.setLength(m_ledBuffer.getLength());
+        m_ledStrand.start();
 
         // Set the default command to turn the strip off, otherwise the last colors written by
         // the last command to run will continue to be displayed.
@@ -50,7 +58,7 @@ public class LEDSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
         // Periodically send the latest LED color data to the LED strip for it to display
-        m_ledPad.setData(m_ledBuffer);
+        m_ledStrand.setData(m_ledBuffer);
     }
 
     /**

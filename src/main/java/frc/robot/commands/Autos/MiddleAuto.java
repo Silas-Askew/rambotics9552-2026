@@ -36,11 +36,11 @@ public class MiddleAuto extends SequentialCommandGroup {
         super(
             new RampUpToShoot(shooter).withTimeout(5) 
             .alongWith(new WaitCommand(1).andThen(new IntakeToShooter(intake).withTimeout(4.0)))
-            .andThen(new ArcadeDrive(drive, () -> 0, () -> -0.9).withTimeout(1.0)) 
+            .andThen(new ArcadeDrive(drive, () -> 0, () -> -0.8).withTimeout(1.0)) 
             .andThen(new ArcadeDrive(drive, () -> 1.0, () -> 0).withTimeout(2.0))
-            .andThen(new ArcadeDrive(drive, () -> 0, () -> -0.9).withTimeout(1.0))
+            .andThen(new ArcadeDrive(drive, () -> 0, () -> -0.8).withTimeout(1.0))
             .andThen(new ArcadeDrive(drive, () -> 1.0, () -> 0).withTimeout(2.0))
-            .andThen(new ArcadeDrive(drive, () -> 0, () -> -0.9).withTimeout(1.0))
+            .andThen(new ArcadeDrive(drive, () -> 0, () -> -0.8).withTimeout(1.0))
             .andThen(new ArcadeDrive(drive, () -> 1.1, () -> 0).withTimeout(3.0))
 
         );
