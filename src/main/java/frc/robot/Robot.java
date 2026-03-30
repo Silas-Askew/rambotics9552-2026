@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -40,6 +42,8 @@ public class Robot extends TimedRobot {
   SendableChooser<Integer> controlChooser = new SendableChooser<Integer>();
   //private NetworkTableEntry cameraSelection;
 
+  SendableChooser<Integer> autoChooser = new SendableChooser<>();
+
   private final CommandXboxController movementJoystick = new CommandXboxController(Constants.controller.MOVEMENT_JOYSTICK);
   private final CommandXboxController manipulatorJoystick = new CommandXboxController(Constants.controller.MANIPULATOR_JOYSTICK);
 
@@ -47,15 +51,21 @@ public class Robot extends TimedRobot {
    * @return */
     // Configure the button bindings
   public Robot(){
+    UsbCamera camera = CameraServer.startAutomaticCapture();
 
     controlChooser.setDefaultOption("arcade :)", 0);
     controlChooser.addOption("tank :(", 1);
 
+    autoChooser.setDefaultOption("fuel scoring only auto", 0);
+    autoChooser.addOption("score fuel and disrupt field starting left field", 1);
+    autoChooser.addOption("score fuel and disrupt field starting center field", 2);
+    autoChooser.addOption("score fuel and disrupt field starting right field", 3);
+
     configureButtonBindings();
 
-
     SmartDashboard.putData("control type", controlChooser);
-    
+    SmartDashboard.putData("autonomous command", autoChooser);
+    camera.setResolution(720, 720);
       
 
     
@@ -77,7 +87,7 @@ public class Robot extends TimedRobot {
       manipulatorJoystick.b().whileTrue(new ArmUp(m_armSubsystem));
       manipulatorJoystick.leftBumper().whileTrue(new Outtake(m_IntakeSubsystem));
       manipulatorJoystick.rightBumper().and(() -> !manipulatorJoystick.rightTrigger().getAsBoolean()).whileTrue(new Intake(m_IntakeSubsystem));
-      manipulatorJoystick.leftTrigger().and(() -> !manipulatorJoystick.rightTrigger().getAsBoolean()).whileTrue(new RampUpShooter(m_ShooterSubsystem));
+      manipulatorJoystick.leftTrigger().and(() -> !manipulatorJoystick.rightTrigger().getAsBoolean()).whileTrue(new RampUpToShoot(m_ShooterSubsystem));
       manipulatorJoystick.rightTrigger().and(() -> !manipulatorJoystick.leftTrigger().getAsBoolean()).whileTrue(new IndexShooter(m_IntakeSubsystem));
       manipulatorJoystick.rightTrigger().and(() -> manipulatorJoystick.leftTrigger().getAsBoolean()).whileTrue(new ShootShooter(m_ShooterSubsystem, m_IntakeSubsystem));
       manipulatorJoystick.rightTrigger().and(() -> manipulatorJoystick.leftTrigger().getAsBoolean()).and(() -> manipulatorJoystick.rightBumper().getAsBoolean()).whileTrue(new ShootNIntake(m_ShooterSubsystem, m_IntakeSubsystem));
@@ -120,7 +130,16 @@ public class Robot extends TimedRobot {
     // An ExampleCommand will run in autonomous
     //return new DriveForward(m_driveSubsystem);
     //return new DriveForwardTimed(m_driveSubsystem, () -> 0.67, 2.5);
-    return new MiddleAuto(m_driveSubsystem, m_ShooterSubsystem, m_IntakeSubsystem);
+    if (autoChooser.getSelected() == 1) {
+      return new LeftSideAuto(m_driveSubsystem, m_ShooterSubsystem, m_IntakeSubsystem);
+    } else if (autoChooser.getSelected() == 2) {
+      return new MiddleAuto(m_driveSubsystem, m_ShooterSubsystem, m_IntakeSubsystem);
+    } else if (autoChooser.getSelected() == 3) {
+      return new RightSideAuto(m_driveSubsystem, m_ShooterSubsystem, m_IntakeSubsystem);
+    } else {
+      return new ShootFuelAuto(m_driveSubsystem, m_ShooterSubsystem, m_IntakeSubsystem);
+    }
+    //return new MiddleAuto(m_driveSubsystem, m_ShooterSubsystem, m_IntakeSubsystem);
   }
   /**
    * This function is run when the robot is first started up and should be used for any

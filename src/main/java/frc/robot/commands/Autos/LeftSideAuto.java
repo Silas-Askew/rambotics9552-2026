@@ -3,46 +3,30 @@ package frc.robot.commands.Autos;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.ArcadeDrive;
-import frc.robot.commands.IndexShooter;
-import frc.robot.commands.Intake;
 import frc.robot.commands.IntakeToShooter;
-import frc.robot.commands.Outtake;
 import frc.robot.commands.RampUpToShoot;
-import frc.robot.commands.ShootNIntake;
-import frc.robot.commands.ShootShooter;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
-public class MiddleAuto extends SequentialCommandGroup {
-    
+public class LeftSideAuto extends SequentialCommandGroup {
+
     /**
      * 
-     * @param drive - drive subsystem
-     * @param shooter - shooter subsystem 
-     * @param intake - intake subsystem
-     * 
-     * Current Auto:
-     *  Rev up shooter and shoot fuel for 1st 5 seconds, 
-     *  then turn left 90*, 
-     *  drive forward, 
-     *  turn left 90*, 
-     *  drive forward (hopefully under the trench), 
-     *  turn left 90* again, 
-     *  drive forward across the field disrupting fuel
-     * 
+     * @param drive
+     * @param shooter
+     * @param intake
      */
-    public MiddleAuto(DriveBase drive, ShooterSubsystem shooter, IntakeSubsystem intake) {
+    public LeftSideAuto(DriveBase drive, ShooterSubsystem shooter, IntakeSubsystem intake) {
         super(
             new RampUpToShoot(shooter).withTimeout(5) 
             .alongWith(new WaitCommand(1).andThen(new IntakeToShooter(intake).withTimeout(4.0)))
-            .andThen(new ArcadeDrive(drive, () -> 0, () -> -0.9).withTimeout(1.0)) 
+            .andThen(new ArcadeDrive(drive, () -> 0, () -> -0.67).withTimeout(1.0)) 
             .andThen(new ArcadeDrive(drive, () -> 1.0, () -> 0).withTimeout(2.0))
             .andThen(new ArcadeDrive(drive, () -> 0, () -> -0.9).withTimeout(1.0))
             .andThen(new ArcadeDrive(drive, () -> 1.0, () -> 0).withTimeout(2.0))
             .andThen(new ArcadeDrive(drive, () -> 0, () -> -0.9).withTimeout(1.0))
             .andThen(new ArcadeDrive(drive, () -> 1.1, () -> 0).withTimeout(3.0))
-
         );
     }
 }

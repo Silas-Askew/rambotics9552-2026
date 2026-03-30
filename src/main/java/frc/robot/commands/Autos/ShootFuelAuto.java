@@ -1,0 +1,20 @@
+package frc.robot.commands.Autos;
+
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.IntakeToShooter;
+import frc.robot.commands.RampUpToShoot;
+import frc.robot.subsystems.DriveBase;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
+
+public class ShootFuelAuto extends SequentialCommandGroup {
+
+    public ShootFuelAuto(DriveBase drive, ShooterSubsystem shooter, IntakeSubsystem intake) {
+        super(
+            new RampUpToShoot(shooter).withTimeout(5) 
+            .alongWith(new WaitCommand(1).andThen(new IntakeToShooter(intake).withTimeout(4.0)))
+        );
+    }
+}

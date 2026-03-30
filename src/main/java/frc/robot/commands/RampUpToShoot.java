@@ -5,11 +5,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.ShooterSubsystem;
 
-public class RampUpShooter extends Command {
+public class RampUpToShoot extends Command {
     private ShooterSubsystem shooter;
     private SlewRateLimiter rampLimiter = new SlewRateLimiter(1.0 / Constants.Shooter.shooterRampTime);
 
-    public RampUpShooter(ShooterSubsystem shooterSubsystem) {
+    public RampUpToShoot(ShooterSubsystem shooterSubsystem) {
         this.shooter = shooterSubsystem;
 
         addRequirements(shooterSubsystem);
