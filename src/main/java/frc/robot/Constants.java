@@ -89,7 +89,7 @@ public final class Constants {
   }
 
   public class LED {
-    public static final int kLedPort = 0;
+    public static final int kLedPort = 9;
     public static final int kLedBufferLength = 512;
   }
 
