@@ -96,7 +96,7 @@ public class Robot extends TimedRobot {
     
 
 
-    //m_ledStrand.setData(m_ledBuffer);
+    m_ledStrand.setData(m_ledBuffer);
     m_ledStrand.start();
   }
 
