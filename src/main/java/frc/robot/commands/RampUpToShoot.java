@@ -11,6 +11,7 @@ public class RampUpToShoot extends Command {
 
     public RampUpToShoot(ShooterSubsystem shooterSubsystem) {
         this.shooter = shooterSubsystem;
+        
 
         addRequirements(shooterSubsystem);
     }

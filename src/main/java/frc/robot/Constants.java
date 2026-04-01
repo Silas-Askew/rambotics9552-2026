@@ -83,14 +83,14 @@ public final class Constants {
   public class Shooter {
     public static final int shooterMotor = 7;
     public static final double shooterSpeed = 0.8;
-    public static final double shooterSpeedLow = 0.3;
+    public static final double shooterSpeedLow = 0.67;
     public static final double reverseShooter = -0.1;
-    public static final double shooterRampTime = 1;
+    public static final double shooterRampTime = 1.0;
   }
 
   public class LED {
     public static final int kLedPort = 9;
-    public static final int kLedBufferLength = 512;
+    public static final int kLedBufferLength = 313;
   }
 
 }

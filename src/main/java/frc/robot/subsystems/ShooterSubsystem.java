@@ -1,6 +1,9 @@
 package frc.robot.subsystems;
+import com.revrobotics.spark.SparkBase;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.config.SparkFlexConfig;
+import com.revrobotics.spark.config.SparkParameters;
 import com.revrobotics.spark.SparkMax;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -10,9 +13,12 @@ public class ShooterSubsystem extends SubsystemBase {
    
     private final SparkFlex shooterMotor = new SparkFlex(Constants.Shooter.shooterMotor, MotorType.kBrushless);
     
+    private final SparkFlexConfig shooterMotorConfig;
 
     public ShooterSubsystem() {
-        shooterMotor.setInverted(true);
+        shooterMotorConfig = new SparkFlexConfig();
+        shooterMotorConfig.inverted(true);
+        shooterMotor.configure(shooterMotorConfig, SparkBase.ResetMode.kResetSafeParameters, SparkBase.PersistMode.kPersistParameters);
     }
 
     public void shooterShoot() {
