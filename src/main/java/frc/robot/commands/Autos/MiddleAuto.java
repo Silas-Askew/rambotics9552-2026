@@ -4,9 +4,9 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.IndexShooter;
-import frc.robot.commands.Intake;
+import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.IntakeToShooter;
-import frc.robot.commands.Outtake;
+import frc.robot.commands.OuttakeCommand;
 import frc.robot.commands.RampUpToShoot;
 import frc.robot.commands.ShootNIntake;
 import frc.robot.commands.ShootShooter;
@@ -41,7 +41,7 @@ public class MiddleAuto extends SequentialCommandGroup {
             .andThen(new ArcadeDrive(drive, () -> 0, () -> -0.8).withTimeout(1.0))
             .andThen(new ArcadeDrive(drive, () -> 1.0, () -> 0).withTimeout(2.0))
             .andThen(new ArcadeDrive(drive, () -> 0, () -> -0.8).withTimeout(1.0))
-            .andThen(new ArcadeDrive(drive, () -> 1.1, () -> 0).withTimeout(3.0))
+            .andThen(new ArcadeDrive(drive, () -> 1.1, () -> 0).alongWith(new IntakeCommand(intake)).withTimeout(3.0))
 
         );
     }

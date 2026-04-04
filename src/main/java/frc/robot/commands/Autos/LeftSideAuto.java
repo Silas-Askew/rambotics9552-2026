@@ -3,6 +3,7 @@ package frc.robot.commands.Autos;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.IntakeToShooter;
 import frc.robot.commands.RampUpToShoot;
 import frc.robot.subsystems.DriveBase;
@@ -26,7 +27,7 @@ public class LeftSideAuto extends SequentialCommandGroup {
             .andThen(new ArcadeDrive(drive, () -> 0, () -> -0.8).withTimeout(1.0))
             .andThen(new ArcadeDrive(drive, () -> 1.0, () -> 0).withTimeout(2.0))
             .andThen(new ArcadeDrive(drive, () -> 0, () -> -0.8).withTimeout(1.0))
-            .andThen(new ArcadeDrive(drive, () -> 1.1, () -> 0).withTimeout(3.0))
+            .andThen(new ArcadeDrive(drive, () -> 1.1, () -> 0).alongWith(new IntakeCommand(intake)).withTimeout(3.0))
         );
     }
 }

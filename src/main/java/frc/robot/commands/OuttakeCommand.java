@@ -4,11 +4,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
-public class Intake extends Command {
+public class OuttakeCommand extends Command {
     //public ShooterSubsystem shooter;
-    private IntakeSubsystem intake;
+    public IntakeSubsystem intake;
 
-    public Intake(IntakeSubsystem intakeSubsystem) {
+    public OuttakeCommand(IntakeSubsystem intakeSubsystem) {
         //this.shooter = shooterSubsystem;
         this.intake = intakeSubsystem;
 
@@ -17,7 +17,8 @@ public class Intake extends Command {
 
     @Override
     public void execute(){
-        intake.intake();
+        intake.outtake();
+        //shooter.outtakeIndex();
     }
 
     @Override
