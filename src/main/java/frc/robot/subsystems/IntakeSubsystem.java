@@ -45,10 +45,17 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     public void stopIntake() {
-        intakeMotor.set(0);
+        //intakeMotor.set(0);
+        intakeMotor.stopMotor();
     }
 
     public void stopIndex() {
-        indexMotor.set(0);
+        //indexMotor.set(0);
+        indexMotor.stopMotor();
+    }
+
+    public void stopMotors() {
+        stopIntake();
+        stopIndex();
     }
 }

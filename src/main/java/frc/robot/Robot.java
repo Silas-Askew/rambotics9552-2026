@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.LEDPattern;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -47,21 +48,21 @@ public class Robot extends TimedRobot {
 
   private final IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
 
-  // private final LEDSubsystem m_LedSubsystem = new LEDSubsystem();
-  public final AddressableLED m_ledStrand;
-  public final AddressableLEDBuffer m_ledBuffer;
-  //private final AddressableLEDBufferView m_leftView;
-  //private final AddressableLEDBufferView m_rightView;
+  // // private final LEDSubsystem m_LedSubsystem = new LEDSubsystem();
+  // public final AddressableLED m_ledStrand;
+  // public final AddressableLEDBuffer m_ledBuffer;
+  // //private final AddressableLEDBufferView m_leftView;
+  // //private final AddressableLEDBufferView m_rightView;
 
-  // all hues at maximum saturation and half brightness
-  private final LEDPattern m_rainbow = LEDPattern.rainbow(255, 128);
+  // // all hues at maximum saturation and half brightness
+  // private final LEDPattern m_rainbow;
   
-  // Our LED strip has a density of 120 LEDs per meter
-  private static final Distance kLedSpacing = Meters.of(1 / 256.0);
+  // // Our LED strip has a density of 120 LEDs per meter
+  // private static final Distance kLedSpacing = Meters.of(5 / 313); //256
   
-  // Create a new pattern that scrolls the rainbow pattern across the LED strip, moving at a speed
-  // of 1 meter per second.
-  private final LEDPattern m_scrollingRainbow = m_rainbow.scrollAtAbsoluteSpeed(MetersPerSecond.of(0.33), kLedSpacing);
+  // // Create a new pattern that scrolls the rainbow pattern across the LED strip, moving at a speed
+  // // of 1 meter per second.
+  // private final LEDPattern m_scrollingRainbow;
 
   SendableChooser<Integer> controlChooser = new SendableChooser<Integer>();
   //private NetworkTableEntry cameraSelection;
@@ -76,9 +77,12 @@ public class Robot extends TimedRobot {
     // Configure the button bindings
   public Robot(){
     UsbCamera camera = CameraServer.startAutomaticCapture();
-    m_ledStrand = new AddressableLED(Constants.LED.kLedPort);
-    m_ledBuffer = new AddressableLEDBuffer(Constants.LED.kLedBufferLength);
-    m_ledStrand.setLength(m_ledBuffer.getLength());
+    // m_ledStrand = new AddressableLED(Constants.LED.kLedPort);
+    // m_ledBuffer = new AddressableLEDBuffer(Constants.LED.kLedBufferLength);
+    // m_ledStrand.setLength(m_ledBuffer.getLength());
+
+    // m_rainbow = LEDPattern.rainbow(255, 128);
+    // m_scrollingRainbow = m_rainbow.scrollAtAbsoluteSpeed(MetersPerSecond.of(0.33), kLedSpacing);
 
     controlChooser.setDefaultOption("arcade :)", 0);
     controlChooser.addOption("tank :(", 1);
@@ -94,10 +98,10 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("autonomous command", autoChooser);
     camera.setResolution(1920, 1080);
     
+    // (LEDPattern.solid(Color.kYellow)).applyTo(m_ledBuffer);
 
-
-    m_ledStrand.setData(m_ledBuffer);
-    m_ledStrand.start();
+    // m_ledStrand.setData(m_ledBuffer);
+    // m_ledStrand.start();
   }
 
 
@@ -115,8 +119,9 @@ public class Robot extends TimedRobot {
         ));
         
 
-      manipulatorJoystick.a().whileTrue(new ArmDown(m_armSubsystem));
-      manipulatorJoystick.b().whileTrue(new ArmUp(m_armSubsystem));
+      //manipulatorJoystick.a().whileTrue(new ArmDown(m_armSubsystem));
+      //manipulatorJoystick.b().whileTrue(new ArmUp(m_armSubsystem));
+      manipulatorJoystick.b().whileTrue(new ReverseShooter(m_ShooterSubsystem, m_IntakeSubsystem));
       manipulatorJoystick.leftBumper().whileTrue(new Outtake(m_IntakeSubsystem));
       manipulatorJoystick.rightBumper().and(() -> !manipulatorJoystick.rightTrigger().getAsBoolean()).whileTrue(new Intake(m_IntakeSubsystem));
       manipulatorJoystick.leftTrigger().and(() -> !manipulatorJoystick.rightTrigger().getAsBoolean()).toggleOnTrue(new RampUpToShoot(m_ShooterSubsystem));
@@ -183,9 +188,9 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    m_scrollingRainbow.applyTo(m_ledBuffer);
+    // m_scrollingRainbow.applyTo(m_ledBuffer);
 
-    m_ledStrand.setData(m_ledBuffer);
+    // m_ledStrand.setData(m_ledBuffer);
   }
 
   /**

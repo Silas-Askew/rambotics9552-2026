@@ -17,7 +17,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
     public ShooterSubsystem() {
         shooterMotorConfig = new SparkFlexConfig();
-        shooterMotorConfig.inverted(true);
+        shooterMotorConfig.inverted(true).closedLoopRampRate(Constants.Shooter.shooterRampTime);
         shooterMotor.configure(shooterMotorConfig, SparkBase.ResetMode.kResetSafeParameters, SparkBase.PersistMode.kPersistParameters);
     }
 
@@ -52,7 +52,8 @@ public class ShooterSubsystem extends SubsystemBase {
     // }
 
     public void stopShooter() {
-        shooterMotor.set(0);
+        //shooterMotor.set(0);
+        shooterMotor.stopMotor();
     }
 
     // public void outtakeIndex() {
