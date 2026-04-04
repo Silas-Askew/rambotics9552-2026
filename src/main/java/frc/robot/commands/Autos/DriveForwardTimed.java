@@ -18,7 +18,7 @@ public class DriveForwardTimed extends SequentialCommandGroup {
         */
     public DriveForwardTimed(DriveBase drive, DoubleSupplier speed, double duration) {
         super(
-            new ArcadeDrive(drive, speed, () -> 0).withTimeout(duration)
+            new ArcadeDrive(drive, speed, () -> 0, true).withTimeout(duration)
         );
     }
 }

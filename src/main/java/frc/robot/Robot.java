@@ -115,7 +115,8 @@ public class Robot extends TimedRobot {
         new ArcadeDrive(
               m_driveSubsystem,
               () -> (-0*(-movementJoystick.getLeftTriggerAxis() + movementJoystick.getRightTriggerAxis())-1*movementJoystick.getLeftY()),
-              () -> (movementJoystick.getRightX())
+              () -> (movementJoystick.getRightX()),
+              false
         ));
         
 

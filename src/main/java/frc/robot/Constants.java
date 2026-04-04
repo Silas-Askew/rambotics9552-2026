@@ -25,8 +25,8 @@ public final class Constants {
       public static final int REAR_LEFT_MOTOR = 4;
       public static final int RIGHT_MOTOR = 1;
       public static final int REAR_RIGHT_MOTOR = 2;
-      public static final double DRIVE_SPEED_MULTIPLYER = 1*.6+0;
-      public static final double TURN_SPEED_MULTIPLIER = 1*.7+0;
+      public static final double DRIVE_SPEED_MULTIPLYER = 1*.8+0.0;
+      public static final double TURN_SPEED_MULTIPLIER = 1*.8+0.0;
       public static final double wheelRadius=0.0508;
       public static final double gearRatio=6.145;
       public static final double conversionFactor = wheelRadius*Math.PI*2/(gearRatio);
@@ -39,7 +39,8 @@ public final class Constants {
   public static final class auto {
     public static final double AUTONOMOUS_FORWARD_SPEED = 0.6;
     public static final double AUTONOMOUS_BACK_SPEED = 0.4;
-    public static final double AUTONOMOUS_DRIVE_SPEED_MULTIPLIER = 0.75;
+    public static final double AUTONOMOUS_DRIVE_SPEED_MULTIPLIER = 0.6;
+    public static final double AUTONOMOUS_TURN_SPEED_MULTIPLIER = 0.7;
     public static final String straightPID = null;
     public static final double kd = 1;
     public static final double ki = 0.05;
@@ -82,7 +83,7 @@ public final class Constants {
 
   public class Shooter {
     public static final int shooterMotor = 7;
-    public static final double shooterSpeed = 0.8;
+    public static final double shooterSpeed = 0.67;
     public static final double shooterSpeedLow = 0.67;
     public static final double reverseShooter = -0.1;
     public static final double shooterRampTime = 1.0;

@@ -17,12 +17,12 @@ public class RightSideAuto extends SequentialCommandGroup {
         super(
             new RampUpToShoot(shooter)
             .alongWith(new WaitCommand(1).andThen(new IntakeToShooter(intake))).withTimeout(5.0)
-            .andThen(new ArcadeDrive(drive, () -> 0, () -> 0.67).withTimeout(1.0)) 
-            .andThen(new ArcadeDrive(drive, () -> 1.0, () -> 0).withTimeout(1.0))
-            .andThen(new ArcadeDrive(drive, () -> 0, () -> 0.8).withTimeout(1.0))
-            .andThen(new ArcadeDrive(drive, () -> 1.0, () -> 0).withTimeout(2.0))
-            .andThen(new ArcadeDrive(drive, () -> 0, () -> 0.8).withTimeout(1.0))
-            .andThen(new ArcadeDrive(drive, () -> 1.1, () -> 0).alongWith(new IntakeCommand(intake)).withTimeout(3.0))
+            .andThen(new ArcadeDrive(drive, () -> 0, () -> 0.67, true).withTimeout(1.0)) 
+            .andThen(new ArcadeDrive(drive, () -> 1.0, () -> 0, true).withTimeout(1.0))
+            .andThen(new ArcadeDrive(drive, () -> 0, () -> 0.7, true).withTimeout(1.0))
+            .andThen(new ArcadeDrive(drive, () -> 1.0, () -> 0, true).withTimeout(2.0))
+            .andThen(new ArcadeDrive(drive, () -> 0, () -> 0.7, true).withTimeout(1.0))
+            .andThen(new ArcadeDrive(drive, () -> 1.1, () -> 0, true).alongWith(new IntakeCommand(intake)).withTimeout(3.0))
         );
     }
 }

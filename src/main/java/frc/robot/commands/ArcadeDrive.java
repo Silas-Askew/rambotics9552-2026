@@ -24,12 +24,12 @@ public class ArcadeDrive extends RunCommand {
    * @param speed      The forward speed value for the robot
    * @param right      The turn speed value for the robot
    */
-  public ArcadeDrive(DriveBase drive, DoubleSupplier speed, DoubleSupplier rotation) {
+  public ArcadeDrive(DriveBase drive, DoubleSupplier speed, DoubleSupplier rotation, Boolean isAutonomous) {
     super(
       ()->{
         drive.drive(
-          MathUtil.applyDeadband(speed.getAsDouble(), 0.1)*Constants.drive.DRIVE_SPEED_MULTIPLYER,
-          MathUtil.applyDeadband(rotation.getAsDouble(), 0.1)*Constants.drive.TURN_SPEED_MULTIPLIER
+          MathUtil.applyDeadband(speed.getAsDouble(), 0.1)*(isAutonomous ? Constants.auto.AUTONOMOUS_DRIVE_SPEED_MULTIPLIER : Constants.drive.DRIVE_SPEED_MULTIPLYER),
+          MathUtil.applyDeadband(rotation.getAsDouble(), 0.1)*(isAutonomous ? Constants.auto.AUTONOMOUS_TURN_SPEED_MULTIPLIER : Constants.drive.TURN_SPEED_MULTIPLIER)
         );
       },
       drive
