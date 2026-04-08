@@ -20,8 +20,8 @@ public class RevShooter extends Command {
 
     @Override
     public void end(boolean wasInterupted){
-        if (!wasInterupted) {
+        //if (!wasInterupted) {
             shooter.stopShooter();
-        }
+        //}
     }
 }

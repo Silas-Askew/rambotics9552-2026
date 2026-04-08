@@ -119,20 +119,12 @@ public class Robot extends TimedRobot {
               false
         ));
         
+        movementJoystick.leftBumper().whileTrue(new OuttakeCommand(m_IntakeSubsystem));
+        movementJoystick.leftTrigger().whileTrue(new IntakeCommand(m_IntakeSubsystem));
+        movementJoystick.rightBumper().toggleOnTrue(new RevShooter(m_ShooterSubsystem));
+        movementJoystick.rightTrigger().whileTrue(new IntakeToShooter(m_IntakeSubsystem));
 
-      //manipulatorJoystick.a().whileTrue(new ArmDown(m_armSubsystem));
-      //manipulatorJoystick.b().whileTrue(new ArmUp(m_armSubsystem));
-      manipulatorJoystick.b().whileTrue(new ReverseShooter(m_ShooterSubsystem, m_IntakeSubsystem));
-      manipulatorJoystick.leftBumper().whileTrue(new OuttakeCommand(m_IntakeSubsystem));
-      manipulatorJoystick.rightBumper().and(() -> !manipulatorJoystick.rightTrigger().getAsBoolean()).whileTrue(new IntakeCommand(m_IntakeSubsystem));
-      manipulatorJoystick.leftTrigger().and(() -> !manipulatorJoystick.rightTrigger().getAsBoolean()).toggleOnTrue(new RampUpToShoot(m_ShooterSubsystem));
-      manipulatorJoystick.rightTrigger().and(() -> !manipulatorJoystick.leftTrigger().getAsBoolean()).whileTrue(new IndexShooter(m_IntakeSubsystem));
-      manipulatorJoystick.rightTrigger().and(() -> manipulatorJoystick.leftTrigger().getAsBoolean()).whileTrue(new ShootShooter(m_ShooterSubsystem, m_IntakeSubsystem));
-      manipulatorJoystick.rightTrigger().and(() -> manipulatorJoystick.leftTrigger().getAsBoolean()).and(() -> manipulatorJoystick.rightBumper().getAsBoolean()).whileTrue(new ShootNIntake(m_ShooterSubsystem, m_IntakeSubsystem));
-      //manipulatorJoystick.leftTrigger().whileTrue(new ReverseShooter(m_ShooterSubsystem));
-      //manipulatorJoystick.rightTrigger().and(() -> !manipulatorJoystick.rightBumper().getAsBoolean()).whileTrue(new ShootShooter(m_ShooterSubsystem));
-      //manipulatorJoystick.rightTrigger().and(() -> manipulatorJoystick.rightBumper().getAsBoolean()).whileTrue(new ShootNIntake(m_ShooterSubsystem, m_IntakeSubsystem));
-      //manipulatorJoystick.rightBumper().whileTrue(new Intake(m_ShooterSubsystem, m_IntakeSubsystem)).and(() -> manipulatorJoystick.rightTrigger().getAsBoolean()).whileTrue(new ShootNIntake(m_ShooterSubsystem, m_IntakeSubsystem));
+      
     }
 
     else if (controlChooser.getSelected()==1){
@@ -143,15 +135,27 @@ public class Robot extends TimedRobot {
           () -> (movementJoystick.getRightY())));
 
           
-      manipulatorJoystick.a().whileTrue(new ArmDown(m_armSubsystem));
-      manipulatorJoystick.b().whileTrue(new ArmUp(m_armSubsystem));
+      // manipulatorJoystick.a().whileTrue(new ArmDown(m_armSubsystem));
+      // manipulatorJoystick.b().whileTrue(new ArmUp(m_armSubsystem));
       // manipulatorJoystick.leftBumper().whileTrue(new Outtake(m_IntakeSubsystem));
       // manipulatorJoystick.rightBumper().whileTrue(new Intake(m_IntakeSubsystem));
       // manipulatorJoystick.leftTrigger().whileTrue(new ReverseShooter(m_ShooterSubsystem));
       // manipulatorJoystick.rightTrigger().whileTrue(new ShootShooter(m_ShooterSubsystem));
     }
 
-    
+    //manipulatorJoystick.a().whileTrue(new ArmDown(m_armSubsystem));
+      //manipulatorJoystick.b().whileTrue(new ArmUp(m_armSubsystem));
+      manipulatorJoystick.b().whileTrue(new ReverseShooter(m_ShooterSubsystem, m_IntakeSubsystem));
+      manipulatorJoystick.leftBumper().whileTrue(new OuttakeCommand(m_IntakeSubsystem));
+      manipulatorJoystick.rightBumper().whileTrue(new IntakeCommand(m_IntakeSubsystem));
+      manipulatorJoystick.leftTrigger().toggleOnTrue(new RevShooter(m_ShooterSubsystem));
+      manipulatorJoystick.rightTrigger().whileTrue(new IntakeToShooter(m_IntakeSubsystem));
+      //manipulatorJoystick.rightTrigger().and(() -> manipulatorJoystick.leftTrigger().getAsBoolean()).whileTrue(new ShootShooter(m_ShooterSubsystem, m_IntakeSubsystem));
+      //manipulatorJoystick.rightTrigger().and(() -> manipulatorJoystick.leftTrigger().getAsBoolean()).and(() -> manipulatorJoystick.rightBumper().getAsBoolean()).whileTrue(new ShootNIntake(m_ShooterSubsystem, m_IntakeSubsystem));
+      //manipulatorJoystick.leftTrigger().whileTrue(new ReverseShooter(m_ShooterSubsystem));
+      //manipulatorJoystick.rightTrigger().and(() -> !manipulatorJoystick.rightBumper().getAsBoolean()).whileTrue(new ShootShooter(m_ShooterSubsystem));
+      //manipulatorJoystick.rightTrigger().and(() -> manipulatorJoystick.rightBumper().getAsBoolean()).whileTrue(new ShootNIntake(m_ShooterSubsystem, m_IntakeSubsystem));
+      //manipulatorJoystick.rightBumper().whileTrue(new Intake(m_ShooterSubsystem, m_IntakeSubsystem)).and(() -> manipulatorJoystick.rightTrigger().getAsBoolean()).whileTrue(new ShootNIntake(m_ShooterSubsystem, m_IntakeSubsystem));
      
     //manipulatorJoystick.leftTrigger().onFalse(new stopShooter(shooter, intake));
     //manipulatorJoystick.rightTrigger().onFalse(new stopShooter(shooter, intake));

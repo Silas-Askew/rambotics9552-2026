@@ -18,7 +18,7 @@ public class RampUpToShoot extends Command {
 
     @Override
     public void execute(){
-        shooter.setShooterSpeed(rampLimiter.calculate(Constants.Shooter.shooterSpeed));
+        shooter.setShooterVelocityRPM(rampLimiter.calculate(Constants.Shooter.shooterRPM));
     }
 
     @Override
