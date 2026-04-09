@@ -119,6 +119,7 @@ public class Robot extends TimedRobot {
               false
         ));
         
+        movementJoystick.a().whileTrue(new PassShooter(m_ShooterSubsystem));
         movementJoystick.leftBumper().whileTrue(new OuttakeCommand(m_IntakeSubsystem));
         movementJoystick.leftTrigger().whileTrue(new IntakeCommand(m_IntakeSubsystem));
         movementJoystick.rightBumper().toggleOnTrue(new RevShooter(m_ShooterSubsystem));
@@ -145,6 +146,7 @@ public class Robot extends TimedRobot {
 
     //manipulatorJoystick.a().whileTrue(new ArmDown(m_armSubsystem));
       //manipulatorJoystick.b().whileTrue(new ArmUp(m_armSubsystem));
+      manipulatorJoystick.a().whileTrue(new PassShooter(m_ShooterSubsystem));
       manipulatorJoystick.b().whileTrue(new ReverseShooter(m_ShooterSubsystem, m_IntakeSubsystem));
       manipulatorJoystick.leftBumper().whileTrue(new OuttakeCommand(m_IntakeSubsystem));
       manipulatorJoystick.rightBumper().whileTrue(new IntakeCommand(m_IntakeSubsystem));
