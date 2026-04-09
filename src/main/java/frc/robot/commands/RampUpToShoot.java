@@ -7,7 +7,7 @@ import frc.robot.subsystems.ShooterSubsystem;
 
 public class RampUpToShoot extends Command {
     private ShooterSubsystem shooter;
-    private SlewRateLimiter rampLimiter = new SlewRateLimiter(1.0 / Constants.Shooter.shooterRampTime);
+    private SlewRateLimiter rampLimiter = new SlewRateLimiter(6000.0 / Constants.Shooter.shooterRampTime);
 
     public RampUpToShoot(ShooterSubsystem shooterSubsystem) {
         this.shooter = shooterSubsystem;

@@ -14,7 +14,7 @@ public class ShootFuelAuto extends SequentialCommandGroup {
 
     public ShootFuelAuto(DriveBase drive, ShooterSubsystem shooter, IntakeSubsystem intake) {
         super(
-            new RampUpToShoot(shooter)
+            new RevShooter(shooter)
             .alongWith(new WaitCommand(1.5).andThen(new IntakeToShooter(intake))).withTimeout(5.0)
         );
     }
