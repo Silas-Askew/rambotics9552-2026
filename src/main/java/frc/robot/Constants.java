@@ -47,7 +47,7 @@ public final class Constants {
     public static final double kp = 0.4;
     public static final double tolerence=0.1;
     public static final double AUTONOMOUS_MAIN_TURN_SPEED = 0.8;
-    public static final double AUTO_SHOOTER_RPM = 3800;
+    public static final double AUTO_SHOOTER_RPM = 3500;
   }
 
   public static final class Arm{
@@ -88,11 +88,11 @@ public final class Constants {
     public static final double shooterSpeedLow = 0.67;
     public static final double reverseShooter = -0.1;
     public static final double shooterRampTime = 1.0;
-    public static final double kp = 0.0;
+    public static final double kp = 0.0006;
     public static final double ki = 0.0;
     public static final double kd = 0.0;
     public static final double kV = 0.00015; // other ratio(s): 12.0/6784.0, 0.00013, 0.00017
-    public static final double shooterRPM = 3800;
+    public static final double shooterRPM = 3500; // other speeds: 4000
     public static final double shooterPassRPM = 6000;
   }
 

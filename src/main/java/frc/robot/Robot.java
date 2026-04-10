@@ -120,9 +120,10 @@ public class Robot extends TimedRobot {
         ));
         
         movementJoystick.a().whileTrue(new PassShooter(m_ShooterSubsystem));
+        
         movementJoystick.leftBumper().whileTrue(new OuttakeCommand(m_IntakeSubsystem));
         movementJoystick.leftTrigger().whileTrue(new IntakeCommand(m_IntakeSubsystem));
-        movementJoystick.rightBumper().toggleOnTrue(new RevShooter(m_ShooterSubsystem));
+        movementJoystick.rightBumper().whileTrue(new RevShooter(m_ShooterSubsystem));
         movementJoystick.rightTrigger().whileTrue(new IntakeToShooter(m_IntakeSubsystem));
 
       
@@ -150,7 +151,7 @@ public class Robot extends TimedRobot {
       manipulatorJoystick.b().whileTrue(new ReverseShooter(m_ShooterSubsystem, m_IntakeSubsystem));
       manipulatorJoystick.leftBumper().whileTrue(new OuttakeCommand(m_IntakeSubsystem));
       manipulatorJoystick.rightBumper().whileTrue(new IntakeCommand(m_IntakeSubsystem));
-      manipulatorJoystick.leftTrigger().toggleOnTrue(new RevShooter(m_ShooterSubsystem));
+      manipulatorJoystick.leftTrigger().whileTrue(new RevShooter(m_ShooterSubsystem));
       manipulatorJoystick.rightTrigger().whileTrue(new IntakeToShooter(m_IntakeSubsystem));
       //manipulatorJoystick.rightTrigger().and(() -> manipulatorJoystick.leftTrigger().getAsBoolean()).whileTrue(new ShootShooter(m_ShooterSubsystem, m_IntakeSubsystem));
       //manipulatorJoystick.rightTrigger().and(() -> manipulatorJoystick.leftTrigger().getAsBoolean()).and(() -> manipulatorJoystick.rightBumper().getAsBoolean()).whileTrue(new ShootNIntake(m_ShooterSubsystem, m_IntakeSubsystem));
