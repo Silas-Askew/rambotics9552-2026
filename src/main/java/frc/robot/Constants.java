@@ -92,7 +92,7 @@ public final class Constants {
     public static final double ki = 0.0;
     public static final double kd = 0.0;
     public static final double kV = 0.00015; // other ratio(s): 12.0/6784.0, 0.00013, 0.00017
-    public static final double shooterRPM = 4000;
+    public static final double shooterRPM = 3800;
     public static final double shooterPassRPM = 6000;
   }
 
