@@ -83,6 +83,10 @@ public class ShooterSubsystem extends SubsystemBase {
         setShooterVelocityRPM(Constants.Shooter.shooterRPM);
     }
 
+    public void revShooterAuto() {
+        setShooterVelocityRPM(Constants.auto.AUTO_SHOOTER_RPM);
+    }
+
     public void stopShooter() {
         shooterMotor.stopMotor();
         //setShooterVelocityRPM(0);
